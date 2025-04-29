@@ -29,6 +29,10 @@ def update_mood(text):
 
     mood_data[mood] += 1
     weekly_mood.append(mood)
+def manual_mood_select(mood):
+    mood_data[mood] += 1
+    weekly_mood.append(mood)
+    update_gui()
 
 def get_weekly_mood():
     week_start = datetime.now() - timedelta(days=datetime.now().weekday())
@@ -77,6 +81,14 @@ root.title("Mood Analyzer")
 
 record_button = tk.Button(root, text="Record and Analyze", command=record_and_analyze)
 record_button.pack()
+66: emoji_frame = tk.Frame(root)
+67: emoji_frame.pack()
+
+68: tk.Label(emoji_frame, text="Or select your mood manually:").pack()
+
+69: tk.Button(emoji_frame, text="😊 Happy", command=lambda: manual_mood_select('Happy')).pack(side='left', padx=5)
+70: tk.Button(emoji_frame, text="😔 Sad", command=lambda: manual_mood_select('Sad')).pack(side='left', padx=5)
+71: tk.Button(emoji_frame, text="😐 Neutral", command=lambda: manual_mood_select('Neutral')).pack(side='left', padx=5)
 
 chart_frame = ttk.Frame(root)
 chart_frame.pack()
